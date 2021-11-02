@@ -1,12 +1,5 @@
 import math
-from helper import Helper
-
-
-class Point:
-
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+from helper import Helper, Point
 
 
 class Task5:
