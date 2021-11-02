@@ -1,3 +1,6 @@
+from helper import Helper
+
+
 class Task1:
 
     __task_number = 1
@@ -10,9 +13,10 @@ class Task1:
         return self.__class__.__task_number
 
     def start_task(self):
+        helper = Helper()
         print(f'------------------------- Задача {self.task_number} -------------------------')
         print('Дана длина ребра куба. Найти объем куба и площадь его боковой поверхности')
-        cube_edge = self.__set_value()
+        cube_edge = helper.set_value_simple('Введите длину ребра куба')
         print(f'Объем куба = {self.__get_cube_volume(cube_edge)}')
         print(f'Площадь боковой поверхности = {self.__get_lateral_surface_area(cube_edge)}')
         print('----------------------------------------------------------')
@@ -25,24 +29,3 @@ class Task1:
     @staticmethod
     def __get_lateral_surface_area(cube_edge):
         return round((4 * pow(cube_edge, 2)), 2)
-
-    def __set_value(self) -> float:
-        while True:
-            value = input('Введите длину ребра куба: ')
-            if self.__is_valid(value):
-                return float(value)
-            else:
-                continue
-
-    @staticmethod
-    def __is_valid(value) -> bool:
-        try:
-            value = float(value)
-            if value > 0.0:
-                return True
-            else:
-                print('Неверное значение, повторите')
-                return False
-        except:
-            print('Неверное значение, повторите')
-            return False

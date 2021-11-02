@@ -1,3 +1,6 @@
+from helper import Helper
+
+
 class Task2:
 
     __task_number = 2
@@ -10,10 +13,11 @@ class Task2:
         return self.__class__.__task_number
 
     def start_task(self):
+        helper = Helper()
         print(f'------------------------- Задача {self.task_number} -------------------------')
         print('Три сопротивления R1, R2, R3 соединены параллельно. Найти сопротивление соединения')
         resist_list = list()
-        self.__set_value(resist_list, 3)
+        helper.set_value_description_counter(resist_list, 3, 'R')
 
         print(f'Сопротивление соединения = {self.__get_total_resist(resist_list)}')
         print('----------------------------------------------------------')
@@ -26,28 +30,3 @@ class Task2:
             resist_sum += 1 / resist
 
         return round((1 / resist_sum), 3)
-
-    def __set_value(self, data_list: list, count: int):
-        counter = 1
-        while counter != count + 1:
-            while True:
-                value = input(f'R{counter} = ')
-                if self.__is_valid(value):
-                    counter += 1
-                    data_list.append(float(value))
-                    break
-                else:
-                    continue
-
-    @staticmethod
-    def __is_valid(value) -> bool:
-        try:
-            value = float(value)
-            if value > 0.0:
-                return True
-            else:
-                print('Неверное значение, повторите')
-                return False
-        except:
-            print('Неверное значение, повторите')
-            return False

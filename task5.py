@@ -1,4 +1,5 @@
 import math
+from helper import Helper
 
 
 class Point:
@@ -20,6 +21,7 @@ class Task5:
         return self.__class__.__task_number
 
     def start_task(self):
+        helper = Helper()
         print(f'------------------------- Задача {self.task_number} -------------------------')
         print('Треугольник задан координатами своих вершин. Найти: '
               '• периметр треугольника' 
@@ -27,17 +29,17 @@ class Task5:
         coordinate_list = list()
 
         print(f'Введите координаты точки A:')
-        self.__set_value(coordinate_list, 2, 'X')
+        helper.set_value_start_letter(coordinate_list, 2, 'X')
         point_a = Point(coordinate_list[0], coordinate_list[1])
         coordinate_list.clear()
 
         print(f'Введите координаты точки B:')
-        self.__set_value(coordinate_list, 2, 'X')
+        helper.set_value_start_letter(coordinate_list, 2, 'X')
         point_b = Point(coordinate_list[0], coordinate_list[1])
         coordinate_list.clear()
 
         print(f'Введите координаты точки C:')
-        self.__set_value(coordinate_list, 2, 'X')
+        helper.set_value_start_letter(coordinate_list, 2, 'X')
         point_c = Point(coordinate_list[0], coordinate_list[1])
         coordinate_list.clear()
 
@@ -72,27 +74,3 @@ class Task5:
     @staticmethod
     def __get_vector_length(first: Point, second: Point) -> float:
         return round(math.sqrt(pow((first.x - second.x), 2) + pow((first.y - second.y), 2)), 2)
-
-    def __set_value(self, data_list: list, count: int, start_letter: str):
-        counter = 1
-        value_name = start_letter
-        while counter != count + 1:
-            while True:
-                value = input(f'{value_name} = ')
-                if self.__is_valid(value):
-                    counter += 1
-                    code = ord(value_name)
-                    value_name = chr(code + 1)
-                    data_list.append(float(value))
-                    break
-                else:
-                    continue
-
-    @staticmethod
-    def __is_valid(value) -> bool:
-        try:
-            value = float(value)
-            return True
-        except:
-            print('Неверное значение, повторите')
-            return False

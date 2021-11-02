@@ -1,4 +1,5 @@
 import math
+from helper import Helper
 
 
 class Task3:
@@ -13,11 +14,12 @@ class Task3:
         return self.__class__.__task_number
 
     def start_task(self):
+        helper = Helper()
         print(f'------------------------- Задача {self.task_number} -------------------------')
         print('Вычислить значения функций y = (math.exp(-x1) + math.exp(-x2)) / 2 '
               'и z = ((a * math.sqrt(x1)) - (b * math.sqrt(x2))) / c')
         start_data = list()
-        self.__set_value(start_data)
+        helper.set_value_start_letter(start_data, 3, 'a')
 
         a = start_data[0]
         b = start_data[1]
@@ -65,27 +67,3 @@ class Task3:
         except ValueError:
             print('Недопустимые значения входных данных, начните с начала')
             self.task_ended_callback(self.task_number)
-
-    def __set_value(self, data_list: list):
-        counter = 1
-        value_name = 'a'
-        while counter != 4:
-            while True:
-                value = input(f'{value_name} = ')
-                if self.__is_valid(value):
-                    counter += 1
-                    code = ord(value_name)
-                    value_name = chr(code + 1)
-                    data_list.append(float(value))
-                    break
-                else:
-                    continue
-
-    @staticmethod
-    def __is_valid(value) -> bool:
-        try:
-            value = float(value)
-            return True
-        except:
-            print('Неверное значение, повторите')
-            return False

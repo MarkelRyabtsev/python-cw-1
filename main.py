@@ -29,6 +29,10 @@ def __go_to_task(number: int):
         from task5 import Task5
         task = Task5(task_ended_callback)
         task.start_task()
+    elif number == 6:
+        from task6 import Task6
+        task = Task6(task_ended_callback)
+        task.start_task()
     else:
         print('?')
 
