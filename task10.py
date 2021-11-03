@@ -59,6 +59,12 @@ class Task10:
 
     @staticmethod
     def __get_distance(a: MaterialPoint, b: MaterialPoint, c: MaterialPoint) -> Point:
-        x0 = (a.weight * a.point.x + b.weight * b.point.x + c.weight * c.point.x) / (a.weight + b.weight + c.weight)
-        y0 = (a.weight * a.point.y + b.weight * b.point.y + c.weight * c.point.y) / (a.weight + b.weight + c.weight)
+        x0 = round(
+            (a.weight * a.point.x + b.weight * b.point.x + c.weight * c.point.x) / (a.weight + b.weight + c.weight),
+            2
+        )
+        y0 = round(
+            (a.weight * a.point.y + b.weight * b.point.y + c.weight * c.point.y) / (a.weight + b.weight + c.weight),
+            2
+        )
         return Point(x0, y0)
